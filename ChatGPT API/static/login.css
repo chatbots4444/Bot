@@ -1,0 +1,111 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #a71111;
+    position: relative;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    position: relative;
+}
+
+
+
+.logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    width: 75px;
+}
+
+.language-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 16px;
+    z-index: 9999; /* Ensure it's above other content */
+}
+
+.background-logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.background-logo img {
+    width: 75px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form input {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.login-form button {
+    padding: 10px;
+    background-color: #ffcd29;
+    color: hsl(0, 3%, 52%);
+    border: none;
+    border-radius: 15px;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 10px;
+    width: 100px;
+}
+
+
+/* .loginButton {
+    background-color: #ffcd29;
+} */
+.loginButton {
+    display: flex;
+    justify-content: center; /* ทำให้ปุ่มอยู่ตรงกลาง */
+    margin: 10px 0;
+}
+
+
+/* Style for language selector buttons */
+.language-selector {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.language-selector button {
+    cursor: pointer;
+    margin-left: 5px;
+    background-color: transparent;
+    border: none;
+    color: #fffcfc; /* สีของปุ่มเปลี่ยนภาษา */
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.language-selector button:hover {
+    text-decoration: underline;
+}
+

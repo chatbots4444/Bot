@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='login.css') }}">
+  
+</head>
+
+</head>
+
+<body>
+    <!-- Language selector buttons -->
+    <div class="language-selector">
+        <button onclick="changeLanguage('en')">EN</button>
+        <button onclick="changeLanguage('th')">TH</button>
+    </div>
+
+    <div class="login-container">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo-mfu-v2.png') }}" alt="Logo" class="logo-image">
+        </div>
+        <div style="text-align: center;">
+            <h2 id="login-title">Login</h2>
+        </div>
+        <div>
+
+        </div>
+
+
+       <div class="box"style="text-align: center;">
+        <a href="" title="Login By MFU & Lamduan Email">
+            <img src="https://www.google.com/favicon.ico" alt width="14" class="mr-2">
+            <span>Login By MFU & Lamduan Email</span>
+        </a>
+       
+    </div>
+       
+
+</body>
+
+
+<script>
+    const loginButton = document.getElementById('loginButton');
+
+    loginButton.addEventListener('click', function () {
+        gapi.load('auth2', function () {
+            gapi.auth2.init({
+                client_id: 'YOUR_CLIENT_ID',
+                scope: 'profile email'
+            }).then(function () {
+                gapi.auth2.signIn().then(function (GoogleUser) {
+                    // ดึงอีเมลของผู้ใช้
+                    const email = GoogleUser.getBasicProfile().getEmail();
+
+                    // ตรวจสอบอีเมลกับฐานข้อมูลผู้ใช้
+                    // เปลี่ยน `yourFunction` ด้วยฟังก์ชันของคุณเองเพื่อตรวจสอบอีเมล
+                    if (yourFunction(email)) {
+                        // ล็อกอินผู้ใช้โดยอัตโนมัติ
+                        // เปลี่ยน `yourLoginFunction` ด้วยฟังก์ชันของคุณเองเพื่อล็อกอินผู้ใช้
+                        yourLoginFunction();
+                    } else {
+                        alert('อีเมลนี้ไม่ได้รับอนุญาตให้เข้าสู่ระบบ');
+                    }
+                });
+            });
+        });
+    });
+    const translations = {
+        en: {
+            loginTitle: "Login",
+            // emailPlaceholder: "Email",
+            // passwordPlaceholder: "Password",
+            // forgotPassword: "Forgot password?",
+            // loginButton: "Login",
+            // errorMessage: "Invalid Username OR Password!",
+            languageLabel: "ภาษาไทย"
+        },
+        th: {
+            loginTitle: "เข้าสู่ระบบ",
+            // emailPlaceholder: "อีเมล",
+            // passwordPlaceholder: "รหัสผ่าน",
+            // forgotPassword: "ลืมรหัสผ่าน?",
+            // loginButton: "เข้าสู่ระบบ",
+            // errorMessage: "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง!",
+            languageLabel: "English"
+        }
+    };
+
+    function changeLanguage(lang) {
+        const selectedLang = translations[lang];
+
+        document.getElementById('login-title').innerText = selectedLang.loginTitle;
+        // document.getElementById('email').placeholder = selectedLang.emailPlaceholder;
+        // document.getElementById('password').placeholder = selectedLang.passwordPlaceholder;
+        // document.getElementById('forgot-password-link').innerText = selectedLang.forgotPassword;
+        // document.getElementById('login-button').innerText = selectedLang.loginButton;
+        // document.getElementById('error-message').innerText = selectedLang.errorMessage;
+    }
+
+    function yourFunction(email) {
+        const allowedEmails = ['user1@example.com', 'user2@example.com'];
+        return allowedEmails.includes(email);
+    }
+
+    // ฟังก์ชันตัวอย่างสำหรับล็อกอินผู้ใช้
+    function yourLoginFunction() {
+        // โค้ดสำหรับล็อกอินผู้ใช้
+        alert('ล็อกอินสำเร็จ!');
+    }
+
+
+
+</script>
+
+</body>
+
+</html>
