@@ -10,74 +10,112 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
   <script src="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/lib/languages/python.min.js"></script>
- 
- 
-  
 </head>
 
- <div class="container">
-        <div class="header">
-            <div class="header">
-                <div class="burger-menu" onclick="toggleSidebar()">
-                  &#9776; 
-                </div>
-                <div class="logo">
-                  <img src="{{ url_for('static', filename='images/logo-mfu-v27.png') }}" alt="Logo" class="logo-image">
-                    <span>CHATBOT MFU</span>
-                </div>
-            </div>
-
-            <div id="sidebar" class="sidebar">
-              <img src="{{ url_for('static', filename='images/logo-mfu-v27.png') }}" alt="Logo" class="logo-image">
-                <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">&times;</a>
-                <a href="{{ url_for('index2') }}" onclick="return goToLogin();" class="login-button">New</a>
-                <a href="#">Help</a>
-            </div>
-
-            <div class="language-selector">
-                <button onclick="changeLanguage('en')">EN</button>
-                <button onclick="changeLanguage('th')">TH</button>
-                <a href="{{ url_for('login') }}" onclick="return goToLogin();" class="login-button">Logout</a>
-              
-               
-            </div>
-        
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="header">
+        <div class="burger-menu" onclick="toggleSidebar()">
+          &#9776; 
         </div>
+        <div class="logo">
+          <img src="{{ url_for('static', filename='images/logo-mfu-v27.png') }}" alt="Logo" class="logo-image">
+          <span>CHATBOT MFU</span>
+        </div>
+      </div>
 
-        <div class="content">
-            <h1>Hello User</h1>
-            <h2>How can I help you today?</h2>
-          </div>
+     
 
-    <div class="chat-box">
-      <!-- Chat messages will be added here dynamically -->
+      <div class="language-selector">
+        <button onclick="changeLanguage('en')">EN</button>
+        <button onclick="changeLanguage('th')">TH</button>
+        <a href="{{ url_for('login') }}" onclick="return goToLogin();" class="login-button">Logout</a>
+      </div>
     </div>
-    
-    
+
+    <div id="sidebar" class="sidebar">
+      <div class="logo-container"></div>
+      <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">&times;</a>
+     
+       <!-- เพิ่มส่วนของโปรไฟล์ -->
+  <div id="profile-section" class="profile-section">
+    <img id="profile-picture" src="" alt="Profile Picture" class="profile-picture">
+    <span id="profile-name" class="profile-name"></span>
+    <span id="profile-email" class="profile-email"></span>
+  </div>
+
+      <a href="{{ url_for('index2') }}" class="New">New</a>
+      <a href="{{ url_for('help') }}" class="Help">Help</a>
+      <div class="recents-section">
+        <h3>Recents</h3>
+        <ul id="recents-list">
+          <!-- Recent items will be dynamically added here -->
+        </ul>
+      </div>
+    </div>
+
+    <div class="content">
+      <h1>Hello User</h1>
+      <h2>How can I help you today?</h2>
+    </div>
+
+
+    <div style="text-align: center;">
+      <button class="toggle-button" onclick="toggleChat()">Switch to Admin Chat</button>
+    </div>
+
+    <div class="chat-bot">
+      <h2>Chat with N'din</h2>
+      <div class="chat-bot-messages">
+        <div class="chat-bot"> <!-- bot's response -->
+          <!-- display bot's response here -->
+        </div>
+  
+    <div class="chat-box">
+    </div>
+
+
     <div class="form-group mt-3" style="display: flex; align-items: flex-start;">
       <textarea class="form-control" rows="3" placeholder="Type your message here" id="message-input" style="flex: 1;"></textarea>
       <button type="button" class="btn btn-primary" id="send-btn" style="margin-left: 10px;">Send</button>
-   
     </div>
+  </div>
+</div>
+  
+<script>
+    setInterval(highlightAll,1000);
     
+    function highlightAll() {
+      document.querySelectorAll("pre code").forEach(block => {
+        hljs.highlightBlock(block);
+      });
+    }
+    let isAdminChat = false;
 
-
-  
-  
-  
-  
-  <script>
-setInterval(highlightAll,1000);
-// Function to highlight code using highlight.js library
-function highlightAll() {
-  document.querySelectorAll("pre code").forEach(block => {
-    hljs.highlightBlock(block);
-  });
-}
+    function toggleChat() {
+        isAdminChat = !isAdminChat;
+        const chatTitle = document.querySelector('.chat-bot h2');
+        const toggleButton = document.querySelector('.toggle-button');
+        
+        if (isAdminChat) {
+            chatTitle.textContent = 'Chat with Admin';
+            toggleButton.textContent = 'Switch to Bot Chat';
+        } else {
+            chatTitle.textContent = 'Chat with N\'din';
+            toggleButton.textContent = 'Switch to Admin Chat';
+        }
+        
+        // ล้างประวัติการแชทเมื่อสลับโหมด
+        document.querySelector('.chat-box').innerHTML = '';
+    }
+ 
 
     const chatBox = document.querySelector(".chat-box");
     const messageInput = document.querySelector("#message-input");
     const sendBtn = document.querySelector("#send-btn");
+
+  
 
     function addMessage(message, isUserMessage) {
       const messageDiv = document.createElement("div");
@@ -85,105 +123,138 @@ function highlightAll() {
 
       if (isUserMessage) {
         messageDiv.classList.add("user-message");
-
       } else {
         messageDiv.classList.add("bot-message");
       }
 
-
-
       messageDiv.innerHTML = `
         <img src="{{ url_for('static', filename='images/user.png') }}" class="user-icon"><p>${message}</p>
-        `;
+      `;
 
       chatBox.appendChild(messageDiv);
       chatBox.scrollTop = chatBox.scrollHeight;
     }
 
+
     function goToLogin() {
       window.location.replace("{{ url_for('login') }}");
       return false;
-  }
-
+    }
 
     function sendMessage() {
       const message = messageInput.value.trim();
-
+      
       if (message !== "") {
         addMessage(message, true);
 
+        // ส่งค่า isAdmin ตามการตั้งค่า isAdminChat
         fetch("/api", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({ message })
+          body: JSON.stringify({
+            message,
+            isAdmin: isAdminChat  // เพิ่มข้อมูล isAdmin
+          })
         })
           .then(response => response.json())
           .then(data => {
-                      messageInput.value = "";
+            messageInput.value = "";
             const messageDiv = document.createElement("div");
             messageDiv.classList.add("mt-3", "p-3", "rounded");
             messageDiv.classList.add("bot-message");
-           
+
             const content = data.content;
             
-            // Check if the content has code block
             const hasCodeBlock = content.includes("```");
             if (hasCodeBlock) {
-              // If the content has code block, wrap it in a <pre><code> element
               const codeContent = content.replace(/```([\s\S]+?)```/g, '</p><pre><code>$1</code></pre><p>');
-
-             
-              messageDiv.innerHTML = `<img src="{{ url_for('static', filename='images/tt.png') }}" class="bot-icon"><p>${codeContent}</p>`
-             
-            }
-            else{
-              messageDiv.innerHTML = `<img src="{{ url_for('static', filename='images/tt.png') }}" class="bot-icon"><p>${content}</p>`
+              messageDiv.innerHTML = `<img src="{{ url_for('static', filename='images/tt.png') }}" class="bot-icon"><p>${codeContent}</p>`;
+            } else {
+              messageDiv.innerHTML = `<img src="{{ url_for('static', filename='images/tt.png') }}" class="bot-icon"><p>${content}</p>`;
             }
             chatBox.appendChild(messageDiv);
             chatBox.scrollTop = chatBox.scrollHeight;
-
           })
           .catch(error => console.error(error));
       }
     }
+
+    function addRecentItem(item) {
+      const recentsList = document.getElementById('recents-list');
+      const listItem = document.createElement('li');
+      listItem.textContent = item;
+      listItem.addEventListener('click', () => loadConversation(item));
+      recentsList.prepend(listItem);
+
+      // Limit the number of recent items (e.g., to 5)
+      if (recentsList.children.length > 5) {
+        recentsList.removeChild(recentsList.lastChild);
+      }
+    }
+
+
+
+
     function toggleSidebar() {
       var sidebar = document.getElementById("sidebar");
       var main = document.getElementById("main");
 
       if (sidebar.style.width === "250px") {
-          sidebar.style.width = "0";
-          main.style.marginLeft = "0";
+        sidebar.style.width = "0";
+        main.style.marginLeft = "0";
       } else {
-          sidebar.style.width = "250px";
-          main.style.marginLeft = "250px";
+        sidebar.style.width = "250px";
+        main.style.marginLeft = "250px";
       }
-  }
+    }
+    
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.style.width = sidebar.style.width === "250px" ? "0" : "250px";
+    }
+    
+    // เพิ่มฟังก์ชันสำหรับโหลดข้อมูลโปรไฟล์
+    function loadProfile() {
+      // ในที่นี้เราจำลองการดึงข้อมูลจาก API หรือ session
+      // ในการใช้งานจริง คุณควรเรียกใช้ API หรือดึงข้อมูลจาก session ของเซิร์ฟเวอร์
+      const userData = {
+        name: "ชื่อผู้ใช้",
+        email: "email@example.com",
+        picture: "URL_รูปภาพโปรไฟล์"
+      };
+    
+      document.getElementById("profile-name").textContent = userData.name;
+      document.getElementById("profile-email").textContent = userData.email;
+      document.getElementById("profile-picture").src = userData.picture;
+    }
+    
+    // เรียกใช้ฟังก์ชัน loadProfile เมื่อหน้าเว็บโหลดเสร็จ
+    document.addEventListener("DOMContentLoaded", loadProfile);
 
     function changeLanguage(language) {
       if (language === 'en') {
-          document.documentElement.lang = 'en';
-          document.querySelector('.logo span').textContent = 'CHATBOT MFU';
-          document.querySelector('.content h1').textContent = 'Hello User';
-          document.querySelector('.content h2').textContent = 'How can I help you today?';
+        document.documentElement.lang = 'en';
+        document.querySelector('.logo span').textContent = 'CHATBOT MFU';
+        document.querySelector('.content h1').textContent = 'Hello User';
+        document.querySelector('.content h2').textContent = 'How can I help you today?';
       } else if (language === 'th') {
-          document.documentElement.lang = 'th';
-          document.querySelector('.logo span').textContent = 'แชทบอท มฟล';
-          document.querySelector('.content h1').textContent = 'สวัสดี ผู้ใช้';
-          document.querySelector('.content h2').textContent = 'วันนี้ฉันจะช่วยคุณได้อย่างไร?';
+        document.documentElement.lang = 'th';
+        document.querySelector('.logo span').textContent = 'แชทบอท มฟล';
+        document.querySelector('.content h1').textContent = 'สวัสดี ผู้ใช้';
+        document.querySelector('.content h2').textContent = 'วันนี้ฉันจะช่วยคุณได้อย่างไร?';
       }
-  }
+    }
 
-    
+ 
     sendBtn.addEventListener("click", sendMessage);
     messageInput.addEventListener("keydown", event => {
       if (event.keyCode === 13 && !event.shiftKey) {
         event.preventDefault();
         sendMessage();
       }
-
-
     });
   </script>
 </body>

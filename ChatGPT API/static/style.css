@@ -38,6 +38,26 @@ body {
   font-size: 30px;
 }
 
+.recents-section {
+  margin-top: 20px;
+}
+.recents-section h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+#recents-list {
+  list-style-type: none;
+  padding: 0;
+}
+#recents-list li {
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#recents-list li:hover {
+  background-color: #f0f0f0;
+}
+
 .sidebar {
   height: 100%;
   width: 0;
@@ -173,20 +193,20 @@ body {
 }
 
 .toggle-button {
-  background-color: #fdcf38;
+  background-color: #fdc304;
   border: none;
-  color: rgb(3, 0, 0);
+  color: rgb(47, 45, 45);
   padding: 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
   margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 6px;
-  width: 150px
-  
+  box-shadow: 0 0 0 3px #ffcf31;
+  border-radius: 15px;
+  height: 56px;
 }
+
 
 .human-chat {
   display: none;
@@ -199,7 +219,8 @@ body {
   padding: 10px;
   background-color: #f0f0f0;
   padding: 10px;
-  border-radius: 12px;
+  border-radius: 20px;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
 }
 
 .chat-admin {
@@ -212,26 +233,31 @@ body {
 }
 
 .chat-container {
-  max-width: 50px;
+  max-width: 400px;
   margin: 0 auto;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  overflow: hidden;
   padding: 20px;
-  background-color: #fff;
-  border-radius: 15px; /* เพิ่มความโค้งมนให้กับกรอบภายนอก */
-  overflow-y: auto; /* เพิ่มการเลื่อนสำหรับข้อความที่ยาว */
 }
 
 .chat-message {
-  padding: 12px;
   margin-bottom: 10px;
-  border-radius: 10px; 
+  padding: 14px;
+  border-radius: 20px;
+  font-size: 16px;
+  max-width: 70%;
+  word-wrap: break-word;
  
 }
 
 .user-message {
-  background-color: #272a2b;
+  background-color: #cf1b1b;
+  box-shadow: -6px -6px 10px #847f7f;
   color: #fff;
   font-size: 20px; 
-  padding: 14px;
+  padding: 20px;
   max-width: 40%;
   border-radius: 20px; /* เพิ่มความโค้งมนให้ข้อความผู้ใช้ */
   margin-left: auto; /* ขยับข้อความไปด้านขวา */
@@ -243,12 +269,13 @@ body {
 
 
 .bot-message {
-  background-color: #625a5a;
-  color: white;
+  background-color: #ffffff;
+  box-shadow: -6px -6px 10px #847f7f;
+  color: rgb(3, 3, 3);
   font-size: 20px;
   padding: 14px;
   border-radius: 20px; /* เพิ่มความโค้งมนให้ข้อความบอท */
-  max-width: 50%; /* เพิ่มขนาดความกว้างสูงสุด */
+  max-width: 40%; /* เพิ่มขนาดความกว้างสูงสุด */
   margin-right: auto; /* ขยับข้อความไปด้านซ้าย */
   margin-top: 10px;
   word-wrap: break-word; /* หักคำเมื่อข้อความยาวเกินขอบ */
@@ -312,6 +339,7 @@ body {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* เพิ่มเงาเบา ๆ */
   transition: background-color 0.3s ease; /* เพิ่มเอฟเฟกต์การเปลี่ยนสี */
   margin-top: 20px;    /* เพิ่มระยะห่างทางด้านบน */
+ 
 }
 
 #send-btn:hover {
