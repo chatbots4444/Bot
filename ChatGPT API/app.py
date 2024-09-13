@@ -14,6 +14,10 @@ def index():
 def index2():
     return render_template("index2.html")
 
+@app.route("/help")
+def help():
+    return render_template("help.html")
+
 @app.route('/login')
 def login():
     return render_template('login.html')
