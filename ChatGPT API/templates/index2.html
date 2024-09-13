@@ -35,9 +35,7 @@
     </div>
 
     <div id="sidebar" class="sidebar">
-      <div class="logo-container">
-      
-      </div>
+      <div class="logo-container"></div>
       <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">&times;</a>
      
        <!-- เพิ่มส่วนของโปรไฟล์ -->
@@ -48,7 +46,13 @@
   </div>
 
       <a href="{{ url_for('index2') }}" class="New">New</a>
-      <a href="#">Help</a>
+      <a href="{{ url_for('help') }}" class="Help">Help</a>
+      <div class="recents-section">
+        <h3>Recents</h3>
+        <ul id="recents-list">
+          <!-- Recent items will be dynamically added here -->
+        </ul>
+      </div>
     </div>
 
     <div class="content">
@@ -177,6 +181,22 @@
       }
     }
 
+    function addRecentItem(item) {
+      const recentsList = document.getElementById('recents-list');
+      const listItem = document.createElement('li');
+      listItem.textContent = item;
+      listItem.addEventListener('click', () => loadConversation(item));
+      recentsList.prepend(listItem);
+
+      // Limit the number of recent items (e.g., to 5)
+      if (recentsList.children.length > 5) {
+        recentsList.removeChild(recentsList.lastChild);
+      }
+    }
+
+
+
+
     function toggleSidebar() {
       var sidebar = document.getElementById("sidebar");
       var main = document.getElementById("main");
@@ -189,6 +209,7 @@
         main.style.marginLeft = "250px";
       }
     }
+    
 
     function toggleSidebar() {
       const sidebar = document.getElementById("sidebar");
@@ -239,5 +260,3 @@
 </body>
 
 </html>
-
-
