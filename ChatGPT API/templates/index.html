@@ -47,9 +47,9 @@
 
       <a href="{{ url_for('index2') }}" class="New">New</a>
       <a href="{{ url_for('help') }}" class="Help">Help</a>
-      <div class="recents-section">
+      <div class="chat-history-section">
         <h3>Recents</h3>
-        <ul id="recents-list">
+    <ul id="chat-history-list">
           <!-- Recent items will be dynamically added here -->
         </ul>
       </div>
@@ -82,10 +82,12 @@
     </div>
   </div>
 </div>
+
+
+ <!-- ด้านล่างส่วนของ script -->
   
 <script>
-    setInterval(highlightAll,1000);
-    
+setInterval(highlightAll,1000);//firt code
     function highlightAll() {
       document.querySelectorAll("pre code").forEach(block => {
         hljs.highlightBlock(block);
@@ -106,7 +108,7 @@
             toggleButton.textContent = 'Switch to Admin Chat';
         }
         
-        // ล้างประวัติการแชทเมื่อสลับโหมด
+       
         document.querySelector('.chat-box').innerHTML = '';
     }
  
@@ -255,6 +257,8 @@
         event.preventDefault();
         sendMessage();
       }
+
+      
     });
   </script>
 </body>
