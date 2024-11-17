@@ -24,9 +24,6 @@
           <span>CHATBOT MFU</span>
         </div>
       </div>
-
-     
-
       <div class="language-selector">
         <button onclick="changeLanguage('en')">EN</button>
         <button onclick="changeLanguage('th')">TH</button>
@@ -47,45 +44,50 @@
 
       <a href="{{ url_for('index2') }}" class="New">New</a>
       <a href="{{ url_for('help') }}" class="Help">Help</a>
-      <div class="recents-section">
-        <h3>Recents</h3>
-        <ul id="recents-list">
-          <!-- Recent items will be dynamically added here -->
-        </ul>
-      </div>
-    </div>
+  </div>
 
     <div class="content">
       <h1>Hello User</h1>
       <h2>How can I help you today?</h2>
     </div>
 
-
     <div style="text-align: center;">
       <button class="toggle-button" onclick="toggleChat()">Switch to Admin Chat</button>
     </div>
-
+    
     <div class="chat-bot">
       <h2>Chat with N'din</h2>
-      <div class="chat-bot-messages">
-        <div class="chat-bot"> <!-- bot's response -->
-          <!-- display bot's response here -->
+      <div id="bot-chat">
+        <div class="chat-box"></div>
+        <div class="form-group mt-3" style="display: flex; align-items: flex-start;">
+          <textarea class="form-control" rows="3" placeholder="Type your message here" id="message-input" style="flex: 1;"></textarea>
+          <button type="button" class="btn btn-primary" id="send-btn" style="margin-left: 10px;">Send</button>
         </div>
-  
-    <div class="chat-box">
+      </div>
+      <div id="chat-container">
+      <div id="admin-chat" class="chat-interface" style="display: none;">
+        <div id="iframe-container">
+          <iframe
+            allow="microphone;"
+            width="350"
+            height="430"
+            src="https://console.dialogflow.com/api-client/demo/embedded/1d0e12ad-42e5-4b43-9710-47488f2c86cb">
+          </iframe>
+        </div>
+        
+        </div>
+      </div>
     </div>
-
-
-    <div class="form-group mt-3" style="display: flex; align-items: flex-start;">
-      <textarea class="form-control" rows="3" placeholder="Type your message here" id="message-input" style="flex: 1;"></textarea>
-      <button type="button" class="btn btn-primary" id="send-btn" style="margin-left: 10px;">Send</button>
-    </div>
-  </div>
-</div>
-  
-<script>
-    setInterval(highlightAll,1000);
     
+
+ 
+
+
+<!-- ด้านล่างส่วนของ script -->
+
+<script>
+//firt code//////////////////////////////////////////////////////
+setInterval(highlightAll,1000);
     function highlightAll() {
       document.querySelectorAll("pre code").forEach(block => {
         hljs.highlightBlock(block);
@@ -97,19 +99,25 @@
         isAdminChat = !isAdminChat;
         const chatTitle = document.querySelector('.chat-bot h2');
         const toggleButton = document.querySelector('.toggle-button');
+        const botChat = document.getElementById('bot-chat');
+        const adminChat = document.getElementById('admin-chat');
         
         if (isAdminChat) {
-            chatTitle.textContent = 'Chat with Admin';
-            toggleButton.textContent = 'Switch to Bot Chat';
-        } else {
-            chatTitle.textContent = 'Chat with N\'din';
-            toggleButton.textContent = 'Switch to Admin Chat';
-        }
-        
-        // ล้างประวัติการแชทเมื่อสลับโหมด
+          chatTitle.textContent = 'Chat with Admin';
+          toggleButton.textContent = 'Switch to Bot Chat';
+          botChat.style.display = 'none';
+          adminChat.style.display = 'block';
+      } else {
+          chatTitle.textContent = 'Chat with N\'din';
+          toggleButton.textContent = 'Switch to Admin Chat';
+          botChat.style.display = 'block';
+          adminChat.style.display = 'none';
+      }
+      
+      if (isAdminChat) {
         document.querySelector('.chat-box').innerHTML = '';
     }
- 
+}
 
     const chatBox = document.querySelector(".chat-box");
     const messageInput = document.querySelector("#message-input");
@@ -255,6 +263,8 @@
         event.preventDefault();
         sendMessage();
       }
+
+      
     });
   </script>
 </body>
