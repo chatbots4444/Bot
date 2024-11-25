@@ -10,27 +10,34 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
   <script src="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/lib/languages/python.min.js"></script>
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;700&display=swap" rel="stylesheet">
+
+
+
 </head>
 
 <body>
-  <div class="container">
-    <div class="header">
-      <div class="header">
-        <div class="burger-menu" onclick="toggleSidebar()">
-          &#9776; 
-        </div>
-        <div class="logo">
-          <img src="{{ url_for('static', filename='images/logo-mfu-v27.png') }}" alt="Logo" class="logo-image">
-          <span>CHATBOT MFU</span>
+  <div class="container-fluid  py-2 border-bottom">
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center">
+        <button class="btn btn-light me-2" onclick="toggleSidebar()">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="d-flex align-items-center">
+          <img src="{{ url_for('static', filename='images/logo-mfu-v27.png') }}" alt="Logo" class="logo-image me-2">
+          <span class="fw-bold fs-5">CHATBOT MFU</span>
         </div>
       </div>
-      <div class="language-selector">
-        <button onclick="changeLanguage('en')">EN</button>
-        <button onclick="changeLanguage('th')">TH</button>
-        <a href="{{ url_for('login') }}" onclick="return goToLogin();" class="login-button">Logout</a>
+      <div>
+        <button class="btn btn-outline-primary me-2" onclick="changeLanguage('en')">EN</button>
+        <button class="btn btn-outline-primaryซ me-2" onclick="changeLanguage('th')">TH</button>
+        <a href="{{ url_for('login') }}" class="btn btn-danger">Logout</a>
       </div>
     </div>
-
+  </div>
+  
     <div id="sidebar" class="sidebar">
       <div class="logo-container"></div>
       <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">&times;</a>
@@ -56,13 +63,16 @@
     </div>
     
     <div class="chat-bot">
-      <h2>Chat with N'din</h2>
+      <h2 style="text-align: center;">Chat with N'din</h2>
       <div id="bot-chat">
         <div class="chat-box"></div>
-        <div class="form-group mt-3" style="display: flex; align-items: flex-start;">
-          <textarea class="form-control" rows="3" placeholder="Type your message here" id="message-input" style="flex: 1;"></textarea>
-          <button type="button" class="btn btn-primary" id="send-btn" style="margin-left: 10px;">Send</button>
+        <div class="form-group">
+          <textarea id="message-input" placeholder="Type your message here"></textarea>
+          <button type="button" class="btn btn-primary" id="send-btn">Send</button>
+          <br>
         </div>
+        </div>
+        
       </div>
       <div id="chat-container">
       <div id="admin-chat" class="chat-interface" style="display: none;">
@@ -71,7 +81,7 @@
             allow="microphone;"
             width="350"
             height="430"
-            src="https://console.dialogflow.com/api-client/demo/embedded/1d0e12ad-42e5-4b43-9710-47488f2c86cb">
+            src="https://console.dialogflow.com/api-client/demo/embedded/ec2fa773-aaf9-4963-82c3-4d00dc09c9a9">
           </iframe>
         </div>
         
@@ -223,6 +233,8 @@ setInterval(highlightAll,1000);
       const sidebar = document.getElementById("sidebar");
       sidebar.style.width = sidebar.style.width === "250px" ? "0" : "250px";
     }
+
+    
     
     // เพิ่มฟังก์ชันสำหรับโหลดข้อมูลโปรไฟล์
     function loadProfile() {
@@ -245,14 +257,22 @@ setInterval(highlightAll,1000);
     function changeLanguage(language) {
       if (language === 'en') {
         document.documentElement.lang = 'en';
-        document.querySelector('.logo span').textContent = 'CHATBOT MFU';
-        document.querySelector('.content h1').textContent = 'Hello User';
-        document.querySelector('.content h2').textContent = 'How can I help you today?';
+        const span = document.querySelector('.logo span');
+        const h1 = document.querySelector('.content h1');
+        const h2 = document.querySelector('.content h2');
+
+        if (logo) logo.textContent = 'CHATBOT MFU';
+        if (h1) h1.textContent = 'Hello User';
+        if (h2) h2.textContent = 'How can I help you today?';
       } else if (language === 'th') {
         document.documentElement.lang = 'th';
-        document.querySelector('.logo span').textContent = 'แชทบอท มฟล';
-        document.querySelector('.content h1').textContent = 'สวัสดี ผู้ใช้';
-        document.querySelector('.content h2').textContent = 'วันนี้ฉันจะช่วยคุณได้อย่างไร?';
+        const span = document.querySelector('.logo span');
+        const h1 = document.querySelector('.content h1');
+        const h2 = document.querySelector('.content h2');
+
+        if (span) logo.textContent = 'แชทบอท มฟล';
+        if (h1) h1.textContent = 'สวัสดี ผู้ใช้';
+        if (h2) h2.textContent = 'วันนี้ฉันจะช่วยคุณได้อย่างไร?';
       }
     }
 

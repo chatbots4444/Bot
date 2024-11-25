@@ -38,9 +38,11 @@ def api():
     except Exception as e:
         print(f"Error using Gemini API: {e}")
         return jsonify({"content": 'Failed to Generate response!'})
+    
 
 if __name__ == '__main__':
     app.run(debug=True)
+
     
     
     
