@@ -22,7 +22,6 @@ def help():
 @app.route('/login')
 def login():
     return render_template('login.html')
-
 # Define the /api route to handle POST requests
 @app.route("/api", methods=["POST"])
 def api():
