@@ -203,7 +203,9 @@ body {
   height: 560px;
   margin: 0 auto;
   border-radius: 20px;
-  overflow: hidden;
+  /* เพิ่ม overflow-y เพื่อให้เลื่อนดูข้อความได้ */
+  overflow-y: auto;
+  overflow-x: hidden; /* ป้องกันการเลื่อนแนวนอน */
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.25);
   border: 1px solid #ddd;
   transition: box-shadow 0.3s ease;
@@ -211,6 +213,25 @@ body {
   background-color: white;
   position: relative;
   z-index: 1;
+}
+
+/* เพิ่ม style สำหรับ scrollbar ให้สวยงาม (optional) */
+.chat-box::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-box::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.chat-box::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 
