@@ -2,20 +2,23 @@ body {
   font-family: "Lato", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #a71111;
+  background-color: #deebfc;;
+  
   height: 100vh;
 }
 
 .container {
-  background-color: #a71111;
+  background-color: #deebfc;
   color: #fff;
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
+}
 
- 
+.container-fluid {
+  background-color: #deebfc;
 }
 
 .header {
@@ -23,7 +26,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  background-color: #a71111;
+  background-color:#deebfc;
   color: white;
 
 }
@@ -37,47 +40,46 @@ body {
 .burger-menu {
   font-size: 30px;
 }
-
-
+#sidebar {
+  transition: width 0.3s ease;
+  z-index: 2;
+}
 .sidebar {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #a71111;
-  overflow-x: hidden;
-  padding-top: 60px;
-  transition: width 0.5s;
-  
+   height: 100%;
+   width: 0;
+   position: fixed;
+   top: 0;
+   left: 0;
+   background-color: #deebfc; /* You can change this color */
+   overflow-x: hidden;
+   padding-top: 60px;
+   transition: width 0.5s;
 }
 
 .sidebar img {
-  margin: 10px;
-  height: 50px;
-  
+   margin: 10px;
+   height: 50px;
 }
 
 .sidebar a {
-  padding: 15px;
-  text-decoration: none;
-  font-size: 20px;
-  color: #fff;
-  display: block;
-  
+   padding: 15px;
+   text-decoration: none;
+   font-size: 20px;
+   color: #fff;
+   display: block;
 }
 
 .sidebar a:hover {
-  background-color: #a71111;
+   background-color: #edf3ff;
 }
 
 .sidebar .closebtn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 36px;
-  color: #fff;
-  cursor: pointer;
+   position: absolute;
+   top: 10px;
+   right: 15px;
+   font-size: 36px;
+   color: #fff;
+   cursor: pointer;
 }
 
 
@@ -136,7 +138,7 @@ body {
 
 .language-selector {
   display: flex;
-  align-items:center;
+  align-items: center;
 }
 
 .language-selector button {
@@ -175,7 +177,7 @@ body {
 }
 
 .toggle-button {
-  background-color: #fdc304;
+  background-color: #f2f2f4;
   border: none;
   color: rgb(47, 45, 45);
   padding: 10px;
@@ -184,9 +186,10 @@ body {
   display: inline-block;
   font-size: 16px;
   margin: 4px 2px;
-  box-shadow: 0 0 0 3px #ffcf31;
+  box-shadow: 0 0 0 3px #deebfc;
   border-radius: 15px;
   height: 56px;
+  margin-bottom: 20px;
 }
 
 
@@ -194,35 +197,22 @@ body {
   display: none;
 }
 
-
 .chat-box {
+  width: 100%;
+  max-width: 1050px;
   height: 560px;
-  overflow: auto;
-  padding: 10px;
-  background-color: #f0f0f0;
-  padding: 10px;
-  border-radius: 20px;
-  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
-}
-
-.chat-admin {
-  height: 560px;
-  overflow: auto;
-  padding: 10px;
-  background-color: #f0f0f0;
-  padding: 10px;
-  border-radius: 12px;
-}
-
-.chat-container {
-  max-width: 400px;
   margin: 0 auto;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 20px;
   overflow: hidden;
-  padding: 20px;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.25);
+  border: 1px solid #ddd;
+  transition: box-shadow 0.3s ease;
+  padding: 10px;
+  background-color: white;
+  position: relative;
+  z-index: 1;
 }
+
 
 .chat-message {
   margin-bottom: 10px;
@@ -231,40 +221,57 @@ body {
   font-size: 16px;
   max-width: 70%;
   word-wrap: break-word;
- 
 }
 
 .user-message {
-  background-color: #cf1b1b;
-  box-shadow: -6px -6px 10px #847f7f;
-  color: #fff;
-  font-size: 20px; 
-  padding: 20px;
-  max-width: 40%;
-  border-radius: 20px; /* เพิ่มความโค้งมนให้ข้อความผู้ใช้ */
-  margin-left: auto; /* ขยับข้อความไปด้านขวา */
-  margin-top: 10px;
-  word-wrap: break-word; /* หักคำเมื่อข้อความยาวเกินขอบ */
-  
-}
-
-
-
-.bot-message {
-  background-color: #ffffff;
-  box-shadow: -6px -6px 10px #847f7f;
-  color: rgb(3, 3, 3);
+  background-color: #edf3ff;
+  color: black;
+  padding: 16px 24px;
+  border-radius: 600px;
+  position: relative;
+  max-width: fit-content;
+  width: fit-content;
+  margin-left: auto;
+  box-shadow: -4px 4px 12px rgba(132, 127, 127, 0.2);
   font-size: 20px;
-  padding: 14px;
-  border-radius: 20px; /* เพิ่มความโค้งมนให้ข้อความบอท */
-  margin-right: auto; /* ขยับข้อความไปด้านซ้าย */
-  margin-top: 10px;
-  word-wrap: break-word; /* หักคำเมื่อข้อความยาวเกินขอบ */
-  display: inline-block; /* ทำให้กรอบยาวตามข้อความ */
- 
-}
+  line-height: 1.5;
+  word-wrap: break-word;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  }
 
-
+  .user-message img {
+  max-width: 50px;
+  max-height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  border: 2px solid #fff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .bot-message {
+    position: relative;
+    background-color: #ffffff;
+    box-shadow: -6px -6px 10px #b6b1b1;
+    color: rgb(3, 3, 3);
+    font-size: 16px;
+    padding: 14px;
+    border-radius: 20px;
+    margin-right: auto;
+    margin-top: 10px;
+    word-wrap: break-word;
+    display: inline-block;
+    border: 1px solid #b3e5fc;
+    width: fit-content;
+    max-width: 70%;
+  }
+  #main {
+    transition: margin-left 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
 .message-text pre code {
   font-size: 1px;
   white-space: pre-wrap;
@@ -286,76 +293,99 @@ body {
   height: 50px;
 }
 
-.chat-container { display: none; }
-.active { display: block; }
-
-#message-input {
-  flex: 1;
-  padding: 10px;
-  height: 30px; /* Adjust height as needed */
-  width: 100%; /* Make sure it fits the container’s width */
-  border-radius: 10px; /* เพิ่มความโค้งมน */
-  border: 2px solid #ddd; /* ขอบสีเทาอ่อน */
-  font-size: 16px; /* ปรับขนาดข้อความ */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* เพิ่มเงาเบา ๆ */
-  resize: none; /* ปิดการปรับขนาด */
-  outline: none; /* ลบเส้นขอบเมื่อคลิก */
-  margin-top: 15px;    /* เพิ่มระยะห่างทางด้านบน */
-  margin-bottom: 15px; /* เพิ่มระยะห่างทางด้านล่าง */
+.chat-container {
+  display: none;
 }
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.active {
+  display: block;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+/* กรอบส่งข้อความ */
+#message-input {
+  flex: 1; /* ให้ขยายเต็มพื้นที่ */
+  flex-basis: 400px; /* กำหนดขนาดเริ่มต้น */
+  max-width: 800px; /* จำกัดความกว้างสูงสุด */
+  min-width: 300px; /* จำกัดความกว้างต่ำสุด */
+  padding: 10px;
+  height: 60px;
+  border-radius: 100px;
+  border: 2px solid #ddd;
+  font-size: 16px;
+  box-shadow: 0 0 5px rgba(78, 62, 62, 0.1);
+  outline: none;
+  margin-right: 10px;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+
 
 #message-input:focus {
-  border-color: #007bff; /* เปลี่ยนขอบเป็นสีน้ำเงินเมื่อโฟกัส */
-  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2); /* เพิ่มเงาเมื่อโฟกัส */
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
 }
 
+
 #send-btn {
-  padding: 10px 20px;
-  margin-left: 10px;
-  background-color: #007bff; /* สีพื้นหลังของปุ่ม */
-  color: #fff; /* สีข้อความของปุ่ม */
-  border: none; /* ลบขอบ */
-  border-radius: 10px; /* เพิ่มความโค้งมน */
-  font-size: 16px; /* ปรับขนาดข้อความ */
+  height: 50px; /* ให้ความสูงของปุ่มเท่ากับ textarea */
+  padding: 0 20px;
+  border-radius: 100px;
+  border: none;
+  background-color: #7b91c2;
+  color: white;
+  font-size: 16px;
   cursor: pointer;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* เพิ่มเงาเบา ๆ */
-  transition: background-color 0.3s ease; /* เพิ่มเอฟเฟกต์การเปลี่ยนสี */
-  margin-top: 20px;    /* เพิ่มระยะห่างทางด้านบน */
- 
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 #send-btn:hover {
-  background-color: #0056b3; /* สีพื้นหลังเมื่อเอาเมาส์ไปชี้ */
+  background-color: #0056b3;
 }
-
-#send-btn:active {
-  background-color: #003d82; /* สีพื้นหลังเมื่อคลิก */
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2); /* ลดเงาเมื่อคลิก */
-}
-
 
 
 #iframe-container {
   width: 100%;
-  max-width: 1550px;
+  max-width: 1050px;
   height: 580px;
   margin: 0 auto;
-  border-radius: 10px; /* Rounded corners */
-  overflow: hidden; /* Ensures iframe stays within the rounded corners */
-  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);/* Soft shadow for depth */
-  border: 1px solid #ddd; /* Subtle border */
+  border-radius: 10px;
+  /* Rounded corners */
+  overflow: hidden;
+  /* Ensures iframe stays within the rounded corners */
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  /* Soft shadow for depth */
+  border: 1px solid #ddd;
+  /* Subtle border */
   transition: box-shadow 0.3s ease;
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 #iframe-container:hover {
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  /* Enhanced shadow on hover */
 }
 
 iframe {
   width: 100%;
   height: 100%;
-  border: none; /* Remove default iframe border */
+  border: none;
+  /* Remove default iframe border */
 }
 
 
@@ -363,12 +393,12 @@ iframe {
 .login-button {
   display: inline-block;
   padding: 10px 20px;
- 
+
   color: white;
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s;
-  margin-left: 2px;  
+  margin-left: 2px;
 }
 
 .login-button:hover {
